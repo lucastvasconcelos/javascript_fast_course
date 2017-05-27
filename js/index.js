@@ -5,7 +5,7 @@ function calcularImc (peso,altura)  {
     return imc    
 }
 
-let preencherimc = (paciente) => {
+function preencherimc (paciente){
     let tdNome = paciente.querySelector(".info-nome")
     let tdPeso = paciente.querySelector(".info-peso")
     let tdAltura = paciente.querySelector(".info-altura")
@@ -13,12 +13,13 @@ let preencherimc = (paciente) => {
     let peso = (tdPeso.textContent)
     let altura = (tdAltura.textContent)
     
-    if (peso < 0 || peso > 1000){
+    pesoValido = validaPeso(peso)
+    alturaValida = validaAltura(altura)
+    if (!pesoValido){
         tdImc.textContent = ("Peso Invalido")
         paciente.classList.add("paciente-invalido")    
-    
     }
-    else if (altura < 0 || altura > 2){
+    else if (!alturaValida){
         tdImc.textContent = ("Altura Invalida")        
         paciente.classList.add("paciente-invalido")    
     }

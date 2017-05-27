@@ -1,13 +1,34 @@
 let botao = document.querySelector("#adicionar-paciente")
 botao.addEventListener("click", function(event) {
+    
     let acesso_tabela = document.querySelector("#tabela-pacientes")
+    
     event.preventDefault()
+    
     let form = document.querySelector("#form-adiciona")
+    
     paciente = receberDados(form)
-    let newTr = montarTr(paciente)
-    acesso_tabela.appendChild(newTr)
-    form.reset()
-  })
+    
+    let mensagemErro = document.querySelector("#error")
+
+    if (!validaPeso(paciente.peso)){
+        mensagemErro.textContent = "Peso invalido"
+        form.reset()
+        return;
+    }
+    else if(!validaAltura(paciente.altura)){
+        mensagemErro.textContent = "Altura invalida"
+        form.reset();
+        return; 
+    }
+    else{
+        let newTr = montarTr(paciente)
+        acesso_tabela.appendChild(newTr)
+        aviso.textContent = ""
+    }
+form.reset()
+      
+})
 
 function receberDados(form){
     var paciente = {
@@ -39,3 +60,20 @@ function montarTr(paciente){
     return newTr
 }
 
+function validaPeso(peso){
+    if (peso >= 0 && peso <= 300){
+        return true
+    }
+    else{
+        return false
+    }
+}
+
+function validaAltura(altura){
+    if(altura > 0 && altura < 4){
+        return true
+    }
+    else{
+        return false
+    }
+}
