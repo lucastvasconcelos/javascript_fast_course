@@ -142,3 +142,9 @@ button[disabled=disabled], button:disabled {
 #error {
 	color: red;
 }
+
+.aviso{
+	background-color: yellow;
+	color: black;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

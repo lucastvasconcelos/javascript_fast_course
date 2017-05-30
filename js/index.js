@@ -13,18 +13,16 @@ function preencherimc (paciente){
     let peso = (tdPeso.textContent)
     let altura = (tdAltura.textContent)
     
-    pesoValido = validaPeso(peso)
-    alturaValida = validaAltura(altura)
-    if (!pesoValido){
-        tdImc.textContent = ("Peso Invalido")
-        paciente.classList.add("paciente-invalido")    
+    let pesoTestado = validaPeso(peso)
+    let alturaTestada = validaAltura(altura)
+    if(!pesoTestado){
+        paciente.classList.add("paciente-invalido")
     }
-    else if (!alturaValida){
-        tdImc.textContent = ("Altura Invalida")        
-        paciente.classList.add("paciente-invalido")    
+    else if(!alturaTestada){
+        paciente.classList.add("paciente-invalido")
     }
     else{
-        tdImc.textContent =  calcularImc(peso,altura)
+        tdImc.textContent = calcularImc(peso,altura)
     }
 }
 

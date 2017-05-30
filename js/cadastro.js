@@ -9,26 +9,32 @@ botao.addEventListener("click", function(event) {
     
     paciente = receberDados(form)
     
-    let mensagemErro = document.querySelector("#error")
+    let erros = validaPaciente(paciente)
+    console.log(erros)
 
-    if (!validaPeso(paciente.peso)){
-        mensagemErro.textContent = "Peso invalido"
-        form.reset()
-        return;
-    }
-    else if(!validaAltura(paciente.altura)){
-        mensagemErro.textContent = "Altura invalida"
-        form.reset();
-        return; 
+    if (erros.length > 0){
+        mostrarTodosErros(erros)
     }
     else{
         let newTr = montarTr(paciente)
         acesso_tabela.appendChild(newTr)
-        aviso.textContent = ""
+        mensagemErro = document.querySelector("#mensagem-erro")
+        mensagemErro.innerHTML = ""
     }
 form.reset()
       
 })
+
+function mostrarTodosErros(erros){
+    ul = document.querySelector("#mensagem-erro")
+    ul.innerHTML = ""
+    for (erro of erros){
+        var li = document.createElement("li")
+        li.textContent = erro
+        li.classList.add("aviso")
+        ul.appendChild(li)
+    }
+}
 
 function receberDados(form){
     var paciente = {
@@ -60,20 +66,47 @@ function montarTr(paciente){
     return newTr
 }
 
+
 function validaPeso(peso){
-    if (peso >= 0 && peso <= 300){
+    if (peso >= 0 && peso <= 300 ){
         return true
     }
-    else{
+    else {
+        return false
+    }   
+ }
+
+function validaAltura(altura){
+    if(altura >= 0 && altura <= 4.0){
+        return true
+    }
+    else {
         return false
     }
 }
 
-function validaAltura(altura){
-    if(altura > 0 && altura < 4){
-        return true
+function validaPaciente(paciente){
+    erros = []
+    console.log(paciente.peso)
+    console.log(paciente.altura)
+    if (!validaPeso(paciente.peso)){
+        erros.push("Peso invalido")
     }
-    else{
-        return false
+    if(paciente.peso.length ==0){
+        erros.push("Peso não pode ser vazio")
     }
+    if(!validaAltura(paciente.altura)){
+        erros.push("Altura invalida")
+    }
+    if(paciente.altura.length == 0){
+        erros.push("Altura não pode ser vazia")
+    }
+    if(paciente.nome.length == 0){
+        erros.push("Campo nome não pode ser vazio")
+    }
+    if(paciente.gordura.length == 0){
+        erros.push("Campo gordura não pode ser vazio")
+    }
+
+    return erros
 }
