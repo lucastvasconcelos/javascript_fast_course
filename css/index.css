@@ -148,3 +148,8 @@ button[disabled=disabled], button:disabled {
 	color: black;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.fadeOut{
+	opacity: 0;
+    transition: 0.5s;
+}
