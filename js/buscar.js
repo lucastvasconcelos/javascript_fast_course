@@ -1,7 +1,7 @@
 let buttonBuscar = document.querySelector("#buscar-paciente")
 buttonBuscar.addEventListener("click",function(){
     var xhr = new XMLHttpRequest();
-    xhr.open("GET","http://api-pacientes.herokuapp.com/p1acientes")
+    xhr.open("GET","http://api-pacientes.herokuapp.com/pacientes")
     xhr.addEventListener("load",function(){
     erroAjax = document.querySelector("#erro-ajax")
         if (xhr.status == 200){

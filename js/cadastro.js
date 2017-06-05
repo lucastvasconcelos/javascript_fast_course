@@ -82,9 +82,23 @@ function validaAltura(altura){
 }
 
 function adicionarNaTabela(paciente){
+    
     let acesso_tabela = document.querySelector("#tabela-pacientes")
-    let newTr = montarTr(paciente)
-    acesso_tabela.appendChild(newTr)    
+    console.log(acesso_tabela)
+    let nomes = acesso_tabela.querySelectorAll(".paciente .info-nome")
+    let verificação = true
+    for( nome of nomes){
+        nome_ver = nome.textContent
+        if (nome_ver == paciente.nome){
+            verificação = false
+            return;
+        }
+    }
+    if(verificação){
+         newTr = montarTr(paciente)
+         newTr.classList.add("paciente")
+         acesso_tabela.appendChild(newTr)
+    }
 }
 
 function validaPaciente(paciente){
