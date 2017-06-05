@@ -1,8 +1,5 @@
 let botao = document.querySelector("#adicionar-paciente")
 botao.addEventListener("click", function(event) {
-    
-    let acesso_tabela = document.querySelector("#tabela-pacientes")
-    
     event.preventDefault()
     
     let form = document.querySelector("#form-adiciona")
@@ -16,8 +13,7 @@ botao.addEventListener("click", function(event) {
         mostrarTodosErros(erros)
     }
     else{
-        let newTr = montarTr(paciente)
-        acesso_tabela.appendChild(newTr)
+        adicionarNaTabela(paciente)
         mensagemErro = document.querySelector("#mensagem-erro")
         mensagemErro.innerHTML = ""
     }
@@ -83,6 +79,12 @@ function validaAltura(altura){
     else {
         return false
     }
+}
+
+function adicionarNaTabela(paciente){
+    let acesso_tabela = document.querySelector("#tabela-pacientes")
+    let newTr = montarTr(paciente)
+    acesso_tabela.appendChild(newTr)    
 }
 
 function validaPaciente(paciente){

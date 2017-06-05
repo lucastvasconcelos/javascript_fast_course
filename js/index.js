@@ -5,7 +5,7 @@ function calcularImc (peso,altura)  {
     return imc    
 }
 
-function preencherimc (paciente){
+function cadastrarNaTabela (paciente){
     let tdNome = paciente.querySelector(".info-nome")
     let tdPeso = paciente.querySelector(".info-peso")
     let tdAltura = paciente.querySelector(".info-altura")
@@ -27,6 +27,6 @@ function preencherimc (paciente){
 }
 
 for (paciente of pacientes){
-    preencherimc(paciente)
+    cadastrarNaTabela(paciente)
 }
 
